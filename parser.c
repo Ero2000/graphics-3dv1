@@ -107,8 +107,14 @@ void parse_file ( char * filename,
       add_box(edges,xvals[0],yvals[0],zvals[0],xvals[1],yvals[1],zvals[1]);
     }
     else if ( strncmp(line, "sphere", strlen(line)) == 0) {
+      fgets(line, sizeof(line), f);
       sscanf(line, "%lf %lf %lf %lf", xvals, yvals, zvals, xvals+1);
       add_sphere(edges, xvals[0], yvals[0], zvals[0], xvals[1], step);
+    }
+    else if ( strncmp(line, "torus", strlen(line)) == 0) {
+      fgets(line, sizeof(line), f);
+      sscanf(line, "%lf %lf %lf %lf %lf", xvals, yvals, zvals, xvals+1, xvals+2);
+      add_torus(edges, xvals[0], yvals[0], zvals[0], xvals[1], xvals[2], step);
     }
     else if ( strncmp(line, "circle", strlen(line)) == 0 ) {
       fgets(line, sizeof(line), f);

@@ -121,7 +121,14 @@ struct matrix * generate_sphere(double cx, double cy, double cz,
 void add_torus( struct matrix * edges, 
                 double cx, double cy, double cz,
                 double r1, double r2, int step ) {
-  return;
+  struct matrix *temp = generate_torus(cx,cy,cz,r1,r2,step);
+  int col = 0;
+
+  while (col < temp -> lastcol){
+    add_point(edges, temp -> m[0][col], temp -> m[1][col], temp -> m[2][col]);
+    col++;
+  }
+  free_matrix(temp);
 }
 
 /*======== void generate_torus() ==========
@@ -138,7 +145,23 @@ void add_torus( struct matrix * edges,
   ====================*/
 struct matrix * generate_torus( double cx, double cy, double cz,
                                 double r1, double r2, int step ) {
-  return NULL;
+  struct matrix *ret = new_matrix(4,0);
+  ident(ret);
+  double Tadd, Padd;
+  double theta, phi, x, y, z;
+
+  for (Padd = 0; Padd < step; Padd++){
+    phi = Padd/step;
+    for (Tadd = 0; Tadd < step; Tadd++){
+      theta = Tadd/step;
+      x = cos(phi * 2 * M_PI) * (r1 * cos(theta * 2 * M_PI) + r2);
+      y = (r1 * sin(theta * 2 * M_PI)) + r2;
+      z = (-1 * sin(phi * 2 * M_PI)) * (r1 * cos(theta * 2 * M_PI) + r2);
+
+      add_edge(ret, x, y, z, x+1, y, z);
+    }
+  }
+  return ret;
 }
 
 /*======== void add_circle() ==========
