@@ -30,15 +30,15 @@ void add_box( struct matrix * edges,
   add_edge(edges,x+width,y-height,z,x,y-height,z);
   add_edge(edges,x,y-height,z,x,y,z);
 
-  add_edge(edges,x,y,z+depth,x+width,y,z+depth);
-  add_edge(edges,x+width,y,z+depth,x+width,y-height,z+depth);
-  add_edge(edges,x+width,y-height,z+depth,x,y-height,z+depth);
-  add_edge(edges,x,y-height,z+depth,x,y,z+depth);
+  add_edge(edges,x,y,z-depth,x+width,y,z-depth);
+  add_edge(edges,x+width,y,z-depth,x+width,y-height,z-depth);
+  add_edge(edges,x+width,y-height,z-depth,x,y-height,z-depth);
+  add_edge(edges,x,y-height,z-depth,x,y,z-depth);
 
-  add_edge(edges,x,y,z,x,y,z+depth);
-  add_edge(edges,x+width,y,z,x+width,y,z+depth);
-  add_edge(edges,x+width,y-height,z,x+width,y-height,z+depth);
-  add_edge(edges,x,y-height,z,x,y-height,z+depth);
+  add_edge(edges,x,y,z,x,y,z-depth);
+  add_edge(edges,x+width,y,z,x+width,y,z-depth);
+  add_edge(edges,x+width,y-height,z,x+width,y-height,z-depth);
+  add_edge(edges,x,y-height,z,x,y-height,z-depth);
 }
 
 /*======== void add_sphere() ==========
@@ -64,6 +64,7 @@ void add_sphere( struct matrix * edges,
 
   while (col < temp -> lastcol){
     add_point(edges, temp -> m[0][col], temp -> m[1][col], temp -> m[2][col]);
+    col++;
   }
   free_matrix(temp);
 }
@@ -84,23 +85,19 @@ struct matrix * generate_sphere(double cx, double cy, double cz,
                                 double r, int step ) {
   struct matrix *ret = new_matrix(4,0);
   ident(ret);
-  double Tadd = M_PI/step;
-  double Padd = (2 * M_PI)/step;
-
+  double Tadd, Padd;
   double theta, phi, x, y, z;
-  theta = 0;
-  phi = 0;
-  
-  while (phi < (M_PI * 2)){
-    while(theta < (M_PI)){
-      x = (r * cos(theta)) + cx;
-      y = (r * sin(theta) * cos(phi)) + cy;
-      z = (r * sin(theta) * sin(phi)) + cz;
-      theta += Tadd;
 
-      add_edge(ret,x,y,z,x+1,y+1,z+1);
+  for (Padd = 0; Padd < step; Padd++){
+    phi = Padd/step;
+    for (Tadd = 0; Tadd < step; Tadd++){
+      theta = Tadd/step;
+      x = (r * cos(theta * M_PI)) + cx;
+      y = (r * sin(theta * M_PI) * cos(phi * 2 * M_PI)) + cy;
+      z = (r * sin(theta * M_PI) * sin(phi * 2 * M_PI)) + cz;
+
+      add_edge(ret, x, y, z, x+1, y, z);
     }
-    phi += Padd;
   }
   return ret;
 }
