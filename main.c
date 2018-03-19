@@ -22,10 +22,8 @@ int main(int argc, char **argv) {
   /* printf("\n"); */
   /* print_matrix( make_hermite() ); */
 
-  if ( argc == 2 )
-    parse_file( argv[1], transform, edges, s );
-  else
-    parse_file( "stdin", transform, edges, s );
+  parse_file( argv[1], transform, edges, s ); //runs test script first
+ 
 
   
   free_matrix( edges );
