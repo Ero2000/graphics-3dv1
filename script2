@@ -17,11 +17,11 @@ color
 box
 0 240 0 200 50 300
 rotate
-z 10
+z 30
 rotate
 y 10
 move
-20 100 0
+20 0 0
 apply
 save
 noice.png
