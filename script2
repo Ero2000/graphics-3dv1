@@ -23,6 +23,6 @@ y 10
 move
 150 200 0
 apply
-display
 save
 noice.png
+display
