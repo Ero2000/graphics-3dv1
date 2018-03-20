@@ -3,15 +3,24 @@ box
 color
 0 235 235
 box
-0 150 0 200 50 300
+0 60 0 200 50 300
 color
 0 215 215
 box
-0 300 0 200 50 300
+0 120 0 200 50 300
 color
 0 195 195
 box
-0 450 0 200 50 300
+0 180 0 200 50 300
+color
+0 175 175
+box
+0 240 0 200 50 300
+rotate
+x 10
+rotate
+y 10
+apply
 save
 noice.png
 quit
