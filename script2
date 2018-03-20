@@ -12,17 +12,6 @@ color
 0 195 195
 box
 0 450 0 200 50 300
-color
-0 175 175
-box
-0 600 0 200 50 300
-rotate
-x 10
-rotate
-y 10
-move
-150 200 0
-apply
 save
 noice.png
 quit
