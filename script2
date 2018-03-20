@@ -1,19 +1,30 @@
 box
-420 150 0 75 75 25
-ident
-translate
--420 -150 0
-rotate
-x 45
-rotate
-y 45
-rotate
-z 45
-translate
-420 150 0
-apply
+0 0 0 200 50 300
 color
-0 200 200
+0 235 235
+box
+0 60 0 200 50 300
+color
+0 215 215
+box
+0 120 0 200 50 300
+color
+0 195 195
+box
+0 180 0 200 50 300
+color
+0 175 175
+box
+0 240 0 200 50 300
+rotate
+z 30
+rotate
+y 10
+move
+20 100 0
+20 0 0
+apply
+display
 save
-pic.png
+noice.png
 quit
