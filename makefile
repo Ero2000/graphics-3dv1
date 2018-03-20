@@ -21,8 +21,7 @@ matrix.o: matrix.c matrix.h
 parser.o: parser.c parser.h matrix.h draw.h display.h ml6.h
 	$(CC) $(CFLAGS) -c parser.c
 
-run: all 
-	./main script
+run: all
 	./main script2
 clean:
 	rm *.o *~
