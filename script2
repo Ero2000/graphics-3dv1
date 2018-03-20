@@ -24,3 +24,5 @@ move
 150 200 0
 apply
 display
+save
+noice.png
